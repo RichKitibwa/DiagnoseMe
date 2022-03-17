@@ -18,3 +18,12 @@ h2.sign-up {
     color: white;
     font-weight: bold;
 }
+.container patient {
+    background-color: #1d6d86;
+}
+.patient-body {
+    background-color: #EFEFEF;
+}
+.patient-footer {
+    height: 10px;
+}
