@@ -27,3 +27,50 @@ h2.sign-up {
 .patient-footer {
     height: 10px;
 }
+.user-background {
+    background-color: #F8F8F8;
+}
+/* footer style*/
+.footer {
+    background-color: #e6e5e5;
+    padding: 3rem 3rem 3rem;
+}
+/*Doctor page style*/
+.container .view-reports {
+    padding: 6rem 6rem;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    background-color: white;
+    border-radius: 10px;
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+.view-reports-button {
+    margin-top: 30px;
+}
+/*patient page style*/
+.container .upload-reports {
+    padding: 6rem 6rem;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    background-color: white;
+    border-radius: 10px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+.upload-reports-button {
+    margin-top: 30px;
+}
+.alert-primary {
+    color: #004085;
+    background-color: #cce5ff;
+    border-color: #b8daff
+}
+.alert {
+    position: relative;
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem
+}
+input {
+    cursor: pointer;
+}

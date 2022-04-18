@@ -1,61 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Flask Login</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+{% extends "users.html" %}
 
-</head>
-<body>
-    <div class="hero-head">
-        <nav class="navbar">
-            <div class="container">
-                <div class="navbar-brand">
-                    <a href="{{ url_for('main.index') }}" class="navbar-item">
-                        DiagnoseMe
-                    </a>
+{%block content%}
+<div class="container upload-reports">
+     {% with messages = get_flashed_messages() %}
+         {% if messages %}
+               {% for message in messages %}
+                <div class="alert alert-primary">
+                    <strong>{{ message }}</strong>
                 </div>
-
-                <div id="navbarMenuHeroA" class="navbar-menu">
-                    <div class="navbar-end">
-                        <a href="{{ url_for('main.index') }}" class="navbar-item">
-                            Home
-                        </a>
-                        {% if current_user.is_authenticated %}
-                        <a href="{{ url_for('main.patient') }}" class="navbar-item">
-                            Profile
-                        </a>
-                        {% endif %}
-
-                        {% if not current_user.is_authenticated %}
-                        <a href="{{ url_for('auth.login') }}" class="navbar-item">
-                            Login
-                        </a>
-                        {% endif %}
-
-                        {% if current_user.is_authenticated %}
-                        <a href="{{ url_for('auth.logout') }}" class="navbar-item">
-                            Logout
-                        </a>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-        </nav>
-
-    </div>
-    <div class="hero-body patient-body">
-
-    </div>
-
-    <footer class="patient-footer">
-      <div class="content has-text-centered">
-        <p>
-          <strong>DiagnoseMe</strong>
-        </p>
-      </div>
-    </footer>
-
-</body>
-</html>
+               {% endfor %}
+         {% endif %}
+      {% endwith %}
+  <h1 class="">Upload Medical reports</h1> <br>
+    <p> Upload image or text document </p> <br>
+   <form method="POST" action="" enctype="multipart/form-data">
+       <input type="file" name="file" multiple> <br>
+        <br>
+      <input type="submit" value="Submit">
+   </form>
+<!--  <div class="upload-reports-button">-->
+<!--    <button class="button is-primary">Upload Medical Report</button>-->
+<!--  </div>-->
+</div>
+{%endblock%}

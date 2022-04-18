@@ -16,15 +16,26 @@ def login():
         password = request.form.get('password')
         remember = True if request.form.get('remember') else False
         user = User.query.filter_by(email=email).first()
+        try:
+            user_role = user.role
+        except:
+            flash('Please Signup first')
 
         if not user:
             flash('Please sign up first!')
             return redirect(url_for('auth.signup'))
-        elif not check_password_hash(user.password, password):
+        elif check_password_hash(user.password, password):
+            login_user(user, remember=remember)
+            if user_role == 'patient':
+                return redirect(url_for('main.patient'))
+            elif user_role == 'doctor':
+                return redirect(url_for('main.doctor'))
+            else:
+                flash('Please check your login details and try again.')
+                return redirect(url_for('auth.login'))
+        else:
             flash('Please check your login details and try again.')
             return redirect(url_for('auth.login'))
-        login_user(user, remember=remember)
-        return redirect(url_for('main.patient'))
 
 
 @auth.route('/signup', methods=['GET', 'POST'])
@@ -35,12 +46,13 @@ def signup():
         email = request.form.get('email')
         name = request.form.get('name')
         password = request.form.get('password')
+        role = request.form.get('role')
         user = User.query.filter_by(email=email).first()
 
         if user:
             flash('Email already exists')
             return redirect(url_for('auth.signup'))
-        new_user = User(email=email, name=name, password=generate_password_hash(password, method='SHA256'))
+        new_user = User(email=email, name=name, password=generate_password_hash(password, method='SHA256'), role=role)
 
         db.session.add(new_user)
         db.session.commit()

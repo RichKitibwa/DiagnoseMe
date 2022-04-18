@@ -1,0 +1,15 @@
+{% extends "users.html" %}
+
+{%block content%}
+
+    <div class="container view-reports">
+    <h1 class="title" style="color: black;">{% block title %} View reports {% endblock %}</h1>
+        {% for report in reports %}
+            <div class="report">
+                <p class="name">Patient name: {{ report.user.name }}</p>
+                <p>{{ report.file }}</p>
+                <p>Created at: {{ report.created_at }}</p>
+            </div>
+        {% endfor %}
+    </div>
+{%endblock%}

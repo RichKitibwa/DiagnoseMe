@@ -3,6 +3,7 @@ from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
 import os
+from flask_migrate import Migrate
 
 db = SQLAlchemy()
 
@@ -12,16 +13,22 @@ load_dotenv()
 def create_app():
     app = Flask(__name__)
     app.secret_key = os.environ['SECRET_KEY']
+    app.config['UPLOAD_FOLDER'] = 'static/uploads'
+    # allowed_extensions = {'txt', 'pdf', 'jpg', 'jpeg'}
+    #
+    # def allowed_files(filename):
+    #     return '.' in filename and filename.rsplit('.', 1)[1].lower() in allowed_extensions
+
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    # app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
-    # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://hjqfofumhrnhjm:ea725535755803f36ade040fb1bdefb7ba111c10ab7a963ca2832d1944a7fe55@ec2-18-210-191-5.compute-1.amazonaws.com:5432/de86b6vsn43178'
-    uri = os.getenv("DATABASE_URL")
-    if uri.startswith("postgres://"):
-        uri = uri.replace("postgres://", "postgresql://", 1)
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+    # uri = os.getenv("DATABASE_URL")
+    # if uri.startswith("postgres://"):
+    #     uri = uri.replace("postgres://", "postgresql://", 1)
     db.init_app(app)
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
+    migrate = Migrate(app, db)
 
     from models import User
 
