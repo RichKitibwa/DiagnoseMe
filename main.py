@@ -34,12 +34,12 @@ def upload_file():
     user_id = current_user.id
 
     if filename != '':
-        # uploaded_file.save(os.path.join(current_app.config['UPLOAD_FOLDER'], filename))
+        uploaded_file.save(os.path.join(current_app.config['UPLOAD_FOLDER'], filename))
         new_file = Files(file=filename, user_id=user_id, data=uploaded_file.read())
         db.session.add(new_file)
         db.session.commit()
         flash("File uploaded successfully")
-    return redirect(url_for('main.patient'))
+    return render_template('patient.html', filename=filename)
 
 
 @main.route('/view_reports', methods=['GET'])
@@ -50,10 +50,9 @@ def view_report():
     return render_template('viewreports.html')
 
 
-@main.route('/download/<file_id>')
-def download(file_id):
-    file = Files.query.filter_by(id=file_id).first()
-    return send_file(BytesIO(file.data), attachment_filename=file.file, as_attachment=True)
+@main.route('/display/<filename>')
+def display_file(filename):
+    return redirect(url_for('static', filename='uploads/' + filename))
 
 
 app = create_app()

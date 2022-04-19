@@ -26,11 +26,11 @@
                             {% if current_user.is_authenticated %}
                                 {% if current_user.role == 'patient' %}
                                     <a href="{{ url_for('main.patient') }}" class="navbar-item">
-                                        Profile
+                                        Upload report
                                     </a>
                                 {% else %}
                                     <a href="{{ url_for('main.doctor') }}" class="navbar-item">
-                                        Profile
+                                        View reports
                                     </a>
                                 {% endif %}
                             {% endif %}

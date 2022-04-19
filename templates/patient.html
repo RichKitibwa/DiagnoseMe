@@ -13,10 +13,15 @@
       {% endwith %}
   <h1 class="">Upload Medical reports</h1> <br>
     <p> Upload image or text document </p> <br>
+   {% if filename %}
+        <div>
+            <img src="{{ url_for('main.display_file', filename=filename) }}">
+        </div>
+   {% endif %}
    <form method="POST" action="" enctype="multipart/form-data">
        <input type="file" name="file" multiple> <br>
         <br>
-      <input type="submit" value="Submit">
+      <input type="submit" value="Submit" class="button is-primary">
    </form>
 <!--  <div class="upload-reports-button">-->
 <!--    <button class="button is-primary">Upload Medical Report</button>-->
