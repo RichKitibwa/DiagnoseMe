@@ -20,7 +20,9 @@ def create_app():
     #     return '.' in filename and filename.rsplit('.', 1)[1].lower() in allowed_extensions
 
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    app.config['SQLALCHEMY_DATABASE_URI'] ='postgresql://yoyudupkzhogzu:16fc30e8e4c3d68985df1b8e84954730994f9a18aaee4859ac003542d5073e8e@ec2-52-54-212-232.compute-1.amazonaws.com:5432/dbfeqkhbjted3d'
+    # app.config['SQLALCHEMY_DATABASE_URI'] ='postgresql://yoyudupkzhogzu:16fc30e8e4c3d68985df1b8e84954730994f9a18aaee4859ac003542d5073e8e@ec2-52-54-212-232.compute-1.amazonaws.com:5432/dbfeqkhbjted3d'
+    app.config['SQLALCHEMY_DATABASE_URI'] =os.environ['DATABASE_URI']
+
     # uri = os.getenv("DATABASE_URL")
     # if uri.startswith("postgres://"):
     #     uri = uri.replace("postgres://", "postgresql://", 1)

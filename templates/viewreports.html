@@ -9,7 +9,7 @@
                 <a href="{{ url_for('main.display_file', filename=filename) }}">
 
                     <p class="name">Patient name: {{ report.user.name }}</p>
-                    <p>Created at: {{ report.created_at }}</p>
+                    <p>Created at: {{ report.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</p>
                 </a>
             </div>
         {% endfor %}
