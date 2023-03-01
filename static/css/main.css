@@ -18,6 +18,25 @@ h2.sign-up {
     color: white;
     font-weight: bold;
 }
+
+.contact {
+    bottom: 0;
+    position: absolute;
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+}
+.contact h3 {
+    color: #4a4a4a;
+    font-weight: bold; 
+}
+
+.contact-details {
+    color: #4a4a4a;
+    font-size: 12px;
+    font-weight: bold;
+}
+
 .container patient {
     background-color: #1d6d86;
 }
